@@ -19,6 +19,7 @@ public class CustomerService {
 	public Customer createCustomerEnrollment(CustomerDTO customerDTO)
 	{
 		Customer customer = new Customer(customerDTO);
+		customerRepository.save(customer);
 		return customer;
 	}
 }

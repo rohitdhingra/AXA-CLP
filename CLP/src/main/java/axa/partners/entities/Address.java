@@ -5,11 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import axa.partners.dto.AddressDTO;
 
 @Entity
+@Table(name="Address")
 public class Address {
 
 	public Address(AddressDTO addressDTO) {
@@ -46,13 +49,14 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long addressId;
 	
-	@Column(name="adress_1")
+	@Column(name="address_1")
 	private String address1;
 	
-	@Column(name="adress_2")
+	@Column(name="address_2")
 	private String address2;
 	
 	@ManyToOne
+	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
 }
