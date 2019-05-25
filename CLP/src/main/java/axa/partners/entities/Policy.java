@@ -1,5 +1,7 @@
 package axa.partners.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,31 +25,34 @@ public class Policy {
 	@Column(name="policy_type_code")
 	private String policyTypeCode;
 	
-	@Column(name="start_date")
-	private String startDate;
-	
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
+	@Column(name="start_date")
+	private Date startDate;
+	
+
 	@Column(name="end_date")
-	private String endDate;
+	private Date endDate;
 	
 	public Policy(Customer customer2, PolicyDTO policyDTO) {
 		this.customer = customer2;
 		this.setPolicyTypeCode(policyDTO.getPolicyTypeCode());
+		this.setStartDate(policyDTO.getStartDate());
+		this.setEndDate(policyDTO.getEndDate());
 		
 	}
 

@@ -1,29 +1,34 @@
 package axa.partners.dto;
 
-import java.sql.Date;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class PolicyDTO {
 
 	private String policyTypeCode;
-
-	private String startDate;
 	
-	private String endDate;
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private Date startDate;
+
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private Date endDate;
 	
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -37,6 +42,9 @@ public class PolicyDTO {
 
 	@Override
 	public String toString() {
-		return "PolicyDTO [policyTypeCode=" + policyTypeCode + "]";
+		return "PolicyDTO [policyTypeCode=" + policyTypeCode + ", startDate=" + startDate + ", endDate=" + endDate
+				+ "]";
 	}
+
+	
 }
