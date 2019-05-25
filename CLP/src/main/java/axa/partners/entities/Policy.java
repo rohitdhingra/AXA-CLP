@@ -23,9 +23,32 @@ public class Policy {
 	@Column(name="policy_type_code")
 	private String policyTypeCode;
 	
+	@Column(name="start_date")
+	private String startDate;
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	@Column(name="end_date")
+	private String endDate;
+	
 	public Policy(Customer customer2, PolicyDTO policyDTO) {
 		this.customer = customer2;
 		this.setPolicyTypeCode(policyDTO.getPolicyTypeCode());
+		
 	}
 
 	public String getPolicyTypeCode() {

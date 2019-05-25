@@ -20,6 +20,10 @@ public class Customer {
 
 	public Customer(CustomerDTO customerDTO) {
 		this.setFirstName(customerDTO.getFirstName());
+		this.setMiddleName(customerDTO.getMiddleName());
+		this.setLastName(customerDTO.getLastName());
+		this.setDateOfBirth(customerDTO.getDateOfBirth());
+		this.setGender(customerDTO.getGender());
 		this.getAddress().add(new Address(this,customerDTO.getAddressDTO()));
 		this.getPolicies().add(new Policy(this,customerDTO.getPolicyDTO()));
 	}
@@ -32,6 +36,50 @@ public class Customer {
 	@Column(name = "first_name")
 	private String firstName;
 
+	@Column(name = "middle_name")
+	private String middleName;
+	
+	@Column(name = "last_name")
+	private String lastName;
+	
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	@Column(name = "gender")
+	private String gender;
+	
+	@Column(name = "date_Of_Birth")
+	private String dateOfBirth;
+	
 	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
 	private List<Address> address = new ArrayList<Address>();
 	

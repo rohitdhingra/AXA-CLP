@@ -15,10 +15,37 @@ import axa.partners.dto.AddressDTO;
 @Table(name="Address")
 public class Address {
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	public Address(Customer customer2, AddressDTO addressDTO) {
 		this.customer= customer2;
 		this.setAddress1(addressDTO.getAddress1());
 		this.setAddress2(addressDTO.getAddress2());
+		this.setCity(addressDTO.getCity());
+		this.setCountry(addressDTO.getCountry());
+		this.setState(addressDTO.getState());
 	}
 
 	public String getAddress1() {
@@ -59,5 +86,14 @@ public class Address {
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
+	
+	@Column(name="city")
+	private String city;
+	
+	@Column(name="state_province_county")
+	private String state;
+	
+	@Column(name="country")
+	private String country;
 	
 }

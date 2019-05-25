@@ -1,7 +1,34 @@
 package axa.partners.dto;
 
+import javax.persistence.Column;
+
 public class AddressDTO {
 	private String address1;
+	private String address2;
+	private String city;
+	private String state;
+	private String country;
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	
+	
 	public String getAddress1() {
 		return address1;
 	}
@@ -14,7 +41,7 @@ public class AddressDTO {
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	private String address2;
+	
 	@Override
 	public String toString() {
 		return "AddressDTO [address1=" + address1 + ", address2=" + address2 + "]";
