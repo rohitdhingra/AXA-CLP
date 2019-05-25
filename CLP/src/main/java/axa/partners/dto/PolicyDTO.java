@@ -11,4 +11,9 @@ public class PolicyDTO {
 	public void setPolicyTypeCode(String policyTypeCode) {
 		this.policyTypeCode = policyTypeCode;
 	}
+
+	@Override
+	public String toString() {
+		return "PolicyDTO [policyTypeCode=" + policyTypeCode + "]";
+	}
 }

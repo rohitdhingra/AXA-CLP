@@ -15,5 +15,9 @@ public class AddressDTO {
 		this.address2 = address2;
 	}
 	private String address2;
+	@Override
+	public String toString() {
+		return "AddressDTO [address1=" + address1 + ", address2=" + address2 + "]";
+	}
 	
 }

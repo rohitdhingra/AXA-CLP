@@ -16,6 +16,7 @@ public class CustomerController {
 	@ResponseBody
 	public String createCustomerEnrollment(@RequestBody CustomerDTO customerDTO)
 	{
+		System.out.println(customerDTO);
 		return "Customer Enrollment Done";
 	}
 	
