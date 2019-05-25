@@ -15,7 +15,8 @@ import axa.partners.dto.AddressDTO;
 @Table(name="Address")
 public class Address {
 
-	public Address(AddressDTO addressDTO) {
+	public Address(Customer customer2, AddressDTO addressDTO) {
+		this.customer= customer2;
 		this.setAddress1(addressDTO.getAddress1());
 		this.setAddress2(addressDTO.getAddress2());
 	}

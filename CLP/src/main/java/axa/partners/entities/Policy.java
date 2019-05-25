@@ -23,7 +23,8 @@ public class Policy {
 	@Column(name="policy_type_code")
 	private String policyTypeCode;
 	
-	public Policy(PolicyDTO policyDTO) {
+	public Policy(Customer customer2, PolicyDTO policyDTO) {
+		this.customer = customer2;
 		this.setPolicyTypeCode(policyDTO.getPolicyTypeCode());
 	}
 

@@ -20,8 +20,8 @@ public class Customer {
 
 	public Customer(CustomerDTO customerDTO) {
 		this.setFirstName(customerDTO.getFirstName());
-		this.getAddress().add(new Address(customerDTO.getAddressDTO()));
-		this.getPolicies().add(new Policy(customerDTO.getPolicyDTO()));
+		this.getAddress().add(new Address(this,customerDTO.getAddressDTO()));
+		this.getPolicies().add(new Policy(this,customerDTO.getPolicyDTO()));
 	}
 
 	@Id
@@ -32,10 +32,10 @@ public class Customer {
 	@Column(name = "first_name")
 	private String firstName;
 
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
 	private List<Address> address = new ArrayList<Address>();
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer",cascade=CascadeType.ALL)
 	private List<Policy> policies= new ArrayList<Policy>();
 	
 	public List<Address> getAddress() {
