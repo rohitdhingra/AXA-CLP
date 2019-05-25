@@ -10,7 +10,7 @@ import axa.partners.dto.CustomerDTO;
 
 @RestController
 @RequestMapping("/customer")
-public class CustomerEnrollmentController {
+public class CustomerController {
 
 	@RequestMapping(path="/enrollment",method=RequestMethod.GET)
 	@ResponseBody
