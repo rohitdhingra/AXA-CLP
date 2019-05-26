@@ -5,10 +5,10 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -20,14 +20,22 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 public class CLPConfig {
+	@Value("${spring.datasource.url}")
+	private String url;
+	@Value("${spring.datasource.username}")
+	private String username;
+	@Value("${spring.datasource.driver-class-name}")
+	private String driverClass;
+	@Value("${spring.datasource.password}")
+	private String password;
+
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUsername("root");
-		dataSource.setPassword("mysql");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/clp-db");
+		dataSource.setDriverClassName(this.driverClass);
+		dataSource.setUsername(this.username);
+		dataSource.setPassword(this.password);
+		dataSource.setUrl(this.url);
 		return dataSource;
 	}
 
@@ -35,7 +43,7 @@ public class CLPConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan(new String[] { "axa.partners.repositories","axa.partners.entities" });
+		em.setPackagesToScan(new String[] { "axa.partners.repositories", "axa.partners.entities" });
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
@@ -43,17 +51,20 @@ public class CLPConfig {
 
 		return em;
 	}
+
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
-	    JpaTransactionManager transactionManager = new JpaTransactionManager();
-	    transactionManager.setEntityManagerFactory(emf);
-	 
-	    return transactionManager;
+		JpaTransactionManager transactionManager = new JpaTransactionManager();
+		transactionManager.setEntityManagerFactory(emf);
+
+		return transactionManager;
 	}
+
 	@Bean
-	public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
-	    return new PersistenceExceptionTranslationPostProcessor();
+	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+		return new PersistenceExceptionTranslationPostProcessor();
 	}
+
 	Properties additionalProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
