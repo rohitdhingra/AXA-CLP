@@ -32,9 +32,7 @@ public class CustomerController {
 		responseMap.put("Customer Profile got created successfully with id:", customer.getCustomerId());
 		statusMap.put("status", "Success");
 		statusMap.put("code", "200");
-		responseMap.put("respopnse",statusMap);
-		
-		
+		responseMap.put("header",statusMap);		
 		return responseMap;
 	}
 	
