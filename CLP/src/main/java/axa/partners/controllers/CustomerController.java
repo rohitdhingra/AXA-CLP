@@ -21,7 +21,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@RequestMapping(path="/enrollment",method=RequestMethod.GET)
+	@RequestMapping(path="/enrollment",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> createCustomerEnrollment(@RequestBody CustomerDTO customerDTO)
 	{
