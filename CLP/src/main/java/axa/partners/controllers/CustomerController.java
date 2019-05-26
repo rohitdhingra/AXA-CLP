@@ -1,5 +1,8 @@
 package axa.partners.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import axa.partners.dto.CustomerDTO;
+import axa.partners.entities.Customer;
 import axa.partners.services.CustomerService;
 
 @RestController
@@ -19,11 +23,19 @@ public class CustomerController {
 	
 	@RequestMapping(path="/enrollment",method=RequestMethod.GET)
 	@ResponseBody
-	public String createCustomerEnrollment(@RequestBody CustomerDTO customerDTO)
+	public Map<String,Object> createCustomerEnrollment(@RequestBody CustomerDTO customerDTO)
 	{
-		System.out.println(customerDTO);
-		customerService.createCustomerEnrollment(customerDTO);
-		return "Customer Enrollment Done";
+		Map<String,Object> responseMap = new HashMap<String,Object>();
+		Map<String,Object> statusMap = new HashMap<String,Object>();
+		Customer customer = customerService.createCustomerEnrollment(customerDTO);
+		
+		responseMap.put("Customer Profile got created successfully with id:", customer.getCustomerId());
+		statusMap.put("status", "Success");
+		statusMap.put("code", "200");
+		responseMap.put("respopnse",statusMap);
+		
+		
+		return responseMap;
 	}
 	
 }

@@ -46,6 +46,10 @@ public class Customer {
 		return middleName;
 	}
 
+	public Long getCustomerId() {
+		return customerId;
+	}
+
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
 	}

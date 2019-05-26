@@ -10,7 +10,7 @@ import axa.partners.entities.Customer;
 import axa.partners.repositories.CustomerRepository;
 
 @Service
-public class CustomerService {
+public class CustomerService implements CustomerServiceInterface{
 
 	@Autowired
 	private CustomerRepository customerRepository;
